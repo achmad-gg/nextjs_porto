@@ -106,7 +106,9 @@ const Navbar: React.FC = () => {
                 >
                   {link.label}
                   {/* Underline hover effect */}
-                  <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-white to-gray-400 transition-all group-hover:w-full" />
+                  <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-blue-500 via-white to-blue-500
+                 transform scale-x-0 origin-center transition-transform duration-300 rounded
+                 group-hover:scale-x-100" />
                 </Link>
               </motion.div>
             ))}

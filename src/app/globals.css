@@ -123,15 +123,51 @@
   }
 }
 
-/* Font */
 
 /* Logo */
 .font-playfair {
   font-family: "Playfair Display", serif;
 }
 
-.title {
+.my-heading {
   font-family: "Montserrat", sans-serif;
-  /* font-weight: 500; */
-  color: oklch(0.488 0.243 264.376);
+  font-size: 40px;   /* default (tanpa breakpoint) */
+  line-height: 1;    /* leading-none */
+  height: auto;      /* default */
+}
+
+/* xs:text-[50px] → biasanya >= 475px (kalau pakai Tailwind default) */
+@media (min-width: 475px) {
+  .my-heading {
+    font-size: 50px;
+  }
+}
+
+/* sm:text-[60px] → >= 640px */
+@media (min-width: 640px) {
+  .my-heading {
+    font-size: 60px;
+  }
+}
+
+/* md:text-[125px] → >= 768px */
+@media (min-width: 768px) {
+  .my-heading {
+    font-size: 125px;
+  }
+}
+
+/* lg:text-[241px] dan lg:h-[13rem] → >= 1024px */
+@media (min-width: 1024px) {
+  .my-heading {
+    font-size: 241px;
+    height: 13rem;
+  }
+}
+
+/* xl:text-[241px] → >= 1280px */
+@media (min-width: 1280px) {
+  .my-heading {
+    font-size: 241px;
+  }
 }

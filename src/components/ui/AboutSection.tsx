@@ -11,14 +11,24 @@ const AboutSection = () => {
 
   // UseInView hooks
   const titleInView = useInView(titleRef, { once: true, margin: "-100px" });
-  const descriptionInView = useInView(descriptionRef, { once: true, margin: "-100px" });
+  const descriptionInView = useInView(descriptionRef, {
+    once: true,
+    margin: "-100px",
+  });
   const stackInView = useInView(stackRef, { once: true, margin: "-100px" });
-  const specialPlaceInView = useInView(specialPlaceRef, { once: true, margin: "-100px" });
+  const specialPlaceInView = useInView(specialPlaceRef, {
+    once: true,
+    margin: "-100px",
+  });
 
   // Variants for fade-up animation similar to AOS
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
   };
 
   // Stagger container for stack items
@@ -34,14 +44,52 @@ const AboutSection = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" as const },
+    },
   };
 
   // Globe variants with scale and rotation
   const globeVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeInOut" as const } },
-    hover: { rotate: 360, transition: { duration: 10, repeat: Infinity, ease: "linear" as const } },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: "easeInOut" as const },
+    },
+    hover: {
+      rotate: 360,
+      transition: { duration: 10, repeat: Infinity, ease: "linear" as const },
+    },
+  };
+
+  const scrollToProject = () => {
+    const aboutSection = document.getElementById("project");
+    if (aboutSection) {
+      const offset = 800;
+      const targetY =
+        aboutSection.getBoundingClientRect().top + window.scrollY - offset;
+      const startY = window.scrollY;
+      const duration = 1500;
+      const startTime = performance.now();
+
+      const easeOutQuad = (t: number) => t * (2 - t);
+
+      const animateScroll = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuad(progress);
+        window.scrollTo(0, startY + (targetY - startY) * easedProgress);
+
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
+    }
   };
 
   return (
@@ -53,7 +101,7 @@ const AboutSection = () => {
             variants={fadeUpVariants}
             initial="hidden"
             animate={titleInView ? "visible" : "hidden"}
-            className="mb-6 text-5xl font-extrabold lg:text-7xl"
+            className="mb-6 text-5xl font-bold lg:text-7xl"
           >
             About me.
           </motion.h2>
@@ -138,6 +186,21 @@ const AboutSection = () => {
               <span className="text-gray-500">[ Globe Placeholder ]</span>
             </motion.div>
           </div>
+        </div>
+      </div>
+      <div className="flex justify-center pt-11 hover:cursor-pointer">
+        <div className="relative w-38 group">
+          <button
+            onClick={scrollToProject}
+            className="w-full font-medium text-white"
+          >
+            Project Showchase
+          </button>
+          <span
+            className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-white to-gray-400 
+                 transform scale-x-0 origin-center transition-transform duration-500 
+                 group-hover:scale-x-100"
+          ></span>
         </div>
       </div>
     </div>

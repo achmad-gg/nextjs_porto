@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import StarBorder from "../components/ui/StarBorder";
 import StackingCard from "@/components/ui/stacking-card";
 import InfoModal from "@/components/ui/InfoModal";
 import AboutSection from "@/components/ui/AboutSection";
@@ -156,7 +155,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 3, ease: "easeOut" }}
-                className="title text-[40px] xs:text-[50px] sm:text-[60px] md:text-[125px] lg:text-[241px] xl:text-[241px] lg:h-[13rem] leading-none tracking-tighter"
+                className="my-heading"
               >
                 AchmadGG
               </motion.h1>
